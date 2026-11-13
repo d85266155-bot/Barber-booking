@@ -21,11 +21,12 @@ jobs:
       - name: Android жобасын жасау
         run: |
           mkdir -p /tmp/keep
-          cp -r lib /tmp/keep/lib
+          cp main.dart /tmp/keep/main.dart
           cp pubspec.yaml /tmp/keep/pubspec.yaml
           flutter create . --platforms=android --project-name barber_book --org kz.barber
           rm -rf lib test
-          cp -r /tmp/keep/lib lib
+          mkdir lib
+          cp /tmp/keep/main.dart lib/main.dart
           cp /tmp/keep/pubspec.yaml pubspec.yaml
           sed -i 's/android:label="[^"]*"/android:label="Барбер"/' android/app/src/main/AndroidManifest.xml
       - run: flutter pub get
